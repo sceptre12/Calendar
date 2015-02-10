@@ -2,6 +2,10 @@ body,html{
 	min-width: 100%;
 	height: 100%;
 }
+#tble{
+	display: flex;
+	justify-content: center;
+}
 #months{
 	/*works in chrome but needs to adjusted for firefox*/
 	display: -webkit-inline-box;
@@ -11,7 +15,17 @@ body,html{
 }
 .mName{
 	margin-right: 5%;
-	/*display: none;*/
+	display: none;
+}
+#gl div,#gr div{
+	width: 100%;
+	height: 100%;
+}
+#gr button{
+	float: left;
+}
+#gl button{
+	float: right;
 }
 
 /* ==========================================================================

@@ -4,7 +4,7 @@ var months = $('.mName');
 $(months).find("h1").each(function(){
    if(($(this).text() === "January") || ($(this).text() === "March") || ($(this).text() === "May") || ($(this).text() === "July") || ($(this).text() === "August") || ($(this).text() === "October") || ($(this).text() === "December")){
 		var dmonth = $(this).text();
-		$(this).parent().find("td").each(function(index,element){
+		$(this).parent().parent().find("td").each(function(index,element){
 			if(dmonth ==="January"){
 				if(index >2){
 					if(count < 32){
@@ -66,7 +66,7 @@ $(months).find("h1").each(function(){
 	}
 	if(($(this).text() === "April") || ($(this).text() === "June") || ($(this).text() === "September") || ($(this).text() === "November")){
 		var dmonth = $(this).text();
-		$(this).parent().find("td").each(function(index,element){
+		$(this).parent().parent().find("td").each(function(index,element){
 		  	if(dmonth === "April"){
 		  		if(index >1){
 			  		if(count < 31){
@@ -101,7 +101,7 @@ $(months).find("h1").each(function(){
 		count = 1;
 	}
 	if(($(this).text() === "Feburary")){
-		$(this).parent().find("td").each(function(index,element){
+		$(this).parent().parent().find("td").each(function(index,element){
 		  	if(index>5){
 			  	if(count < 29){
 					$(this).text(count);
@@ -113,6 +113,22 @@ $(months).find("h1").each(function(){
 	}
 });
 })();
-// $(document).ready(function(){
-// 	$($('mName')[0]).css('display','block');
-// });
+$(document).ready(function(){
+	var curr = 0;
+	$($('.mName')[curr]).css('display','block');
+	left();
+	right();
+	
+});
+function left(curr){
+	$('#gl').find('button').click(function(){
+		if(curr >0){
+			curr--;
+		}
+	});
+}
+function right(curr){
+	$('#gr').find('button').click(function(){
+		curr++;
+	});
+}
