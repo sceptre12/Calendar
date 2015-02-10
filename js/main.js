@@ -114,21 +114,31 @@ $(months).find("h1").each(function(){
 });
 })();
 $(document).ready(function(){
-	var curr = 0;
+	var curr =0;
+	var len = $('.mName').length;
 	$($('.mName')[curr]).css('display','block');
-	left();
-	right();
-	
-});
-function left(curr){
-	$('#gl').find('button').click(function(){
-		if(curr >0){
+	// $('#gl').find('button').removeAttr("disabled");
+	$('#gl').find('button').click(function() {
+		if(curr > 0){
+			$('#gl').find('button').removeAttr("disabled");
+			$($('.mName')[curr]).fadeOut('fast').delay('500');
+			$($('.mName')[curr-1]).delay('500').fadeIn('slow');
 			curr--;
 		}
+		if(curr === 0){
+			$(this).attr('disabled','true');
+		}
+		$('#gr').find('button').removeAttr("disabled");
 	});
-}
-function right(curr){
-	$('#gr').find('button').click(function(){
-		curr++;
+	$('#gr').find('button').click(function() {
+		if(curr < 11) {
+			$($('.mName')[curr]).fadeOut('fast').delay('500');
+			$($('.mName')[curr+1]).delay('500').fadeIn('slow');
+			curr++;
+		}
+		if(curr === 11){
+			$(this).attr('disabled','true');
+		}
+		$('#gl').find('button').removeAttr("disabled");
 	});
-}
+});
