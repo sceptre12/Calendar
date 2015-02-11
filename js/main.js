@@ -178,12 +178,13 @@ $(document).ready(function(){
 
 	$modal.find('p').text('EnterEv');
 	$modal.on('show.bs.modal', function(event){
-		var info = localStorage.getItem(id);
-		var title = $selection.parent().parent().parent().parent().find('h1').text(); // gets the specific month;
-		var content = $selection.text();
-		var indx = findCellParent();
-		var day = $($selection.parent().parent().parent().find('th')[indx]).text();
-		console.log(day);
+		var info = localStorage.getItem(id),
+		month = $selection.parent().parent().parent().parent().find('h1').text(), // gets the specific month;
+		day = $selection.text(),
+		pos = findCellParent(),
+		weekDay = $($selection.parent().parent().parent().find('th')[pos]).text(),
+		title = month + " " + weekDay + " " + day;
+		$modal.find('h4').text(title);
 		if(info !== null){
 			$modal.find('p').text(info);			
 		}else{
@@ -196,16 +197,16 @@ $(document).ready(function(){
 		$modal.find('p').text("") ;
 	});
 	function findCellParent(){
-		$currentPos = $selection;
-		var count = 0;
-		var $row = $currentPos.parent();
+		var count = 0,
+		pos = 0;
+		$row = $selection.parent();
 		$row.find('td').each(function(){
-			if($(this).text() === $currentPos.text()){
-				count = count;
+			if($(this).text() === $selection.text()){
+				pos = count;
 			}
 			count++;
 		});
-		return count;
+		return pos;
 	}
 	
 });
