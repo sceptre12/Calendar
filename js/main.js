@@ -181,7 +181,9 @@ $(document).ready(function(){
 		var info = localStorage.getItem(id);
 		var title = $selection.parent().parent().parent().parent().find('h1').text(); // gets the specific month;
 		var content = $selection.text();
-		$modal.
+		var indx = findCellParent();
+		var day = $($selection.parent().parent().parent().find('th')[indx]).text();
+		console.log(day);
 		if(info !== null){
 			$modal.find('p').text(info);			
 		}else{
@@ -193,12 +195,17 @@ $(document).ready(function(){
 	}).find('#close').click(function(){
 		$modal.find('p').text("") ;
 	});
-	
+	function findCellParent(){
+		$currentPos = $selection;
+		var count = 0;
+		var $row = $currentPos.parent();
+		$row.find('td').each(function(){
+			if($(this).text() === $currentPos.text()){
+				count = count;
+			}
+			count++;
+		});
+		return count;
+	}
 	
 });
-function findCellParent(currentPos){
-	$currentPos = currentPos;
-	var $row = $currentPos.parent();
-	var len = $row.find('td').length;
-
-}
