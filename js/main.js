@@ -115,43 +115,90 @@ $(months).find("h1").each(function(){
 })();
 $(document).ready(function(){
 	var curr =0;
-	var len = $('.mName').length;
-	$($('.mName')[curr]).css('display','block');
-	$('#gl').find('button').click(function() {
+	var $monthN = $('.mName'); // months table
+	var $col = $('td'); // columns 
+	var $glypL = $('#gl'); // left glyp
+	var $glypR = $('#gr'); // right glyp
+	var $modal = $('#myModal'); // modal
+	var $selection ; // current element selected by any action
+
+	// id creation 
+	var id ; // unique id for each table cell
+	
+
+	$($monthN[curr]).css('display','block');
+	$glypL.find('button').click(function() {
 		if(curr > 0){
-			$('#gl').find('button').removeAttr("disabled");
-			$($('.mName')[curr]).fadeOut('fast').delay('500');
-			$($('.mName')[curr-1]).delay('500').fadeIn('slow');
+			$(this).find('button').removeAttr("disabled");
+			$($monthN[curr]).fadeOut('fast').delay('500');
+			$($monthN[curr-1]).delay('500').fadeIn('slow');
 			curr--;
 		}
 		if(curr === 0){
 			$(this).attr('disabled','true');
 		}
-		$('#gr').find('button').removeAttr("disabled");
+		$glypR.find('button').removeAttr("disabled");
 	});
-	$('#gr').find('button').click(function() {
+	$glypR.find('button').click(function() {
 		if(curr < 11) {
-			$($('.mName')[curr]).fadeOut('fast').delay('500');
-			$($('.mName')[curr+1]).delay('500').fadeIn('slow');
+			$($monthN[curr]).fadeOut('fast').delay('500');
+			$($monthN[curr+1]).delay('500').fadeIn('slow');
 			curr++;
 		}
 		if(curr === 11){
 			$(this).attr('disabled','true');
 		}
-		$('#gl').find('button').removeAttr("disabled");
+		$glypL.find('button').removeAttr("disabled");
 	});
 
 	// blocks out the empty calendar dates	
-	$('td').each(function(){
+	$col.each(function(){
 		if($(this).text() === ""){			
 			$(this).attr('disabled','true').css('cursor','no-drop');
 		}else{
 			$(this).css('cursor','pointer');
 		}
 	}).click(function(){
-		if(!($(this).text() === "")){			
+		if(!($(this).text() === "")){
+			// var left = $pos.left.toString().substring(0,7);
+			// var top = $pos.top.toString().substring(0,7);			
+			var content = $(this).text();
+			var $pos = $(this).offset(); // gets the column position
+			/*
+				Gets the specific left and top position, grabs the first 7 indexes from each number 
+				and then adds them together to create the pos variable.
+			*/			
+			var pos = parseFloat($pos.left.toString().substring(0,7)) + parseFloat($pos.top.toString().substring(0,7)); 
+			var parent = $(this).parent().parent().parent().parent().find('h1').text(); // gets the specific month 
+			id = parent.substring(0,3).concat(content,pos);
+			$selection = $(this);
 			$(this).attr('data-toggle','modal').attr('data-target','#myModal');
 		}	 	
 	});
+
+	$modal.find('p').text('EnterEv');
+	$modal.on('show.bs.modal', function(event){
+		var info = localStorage.getItem(id);
+		var title = $selection.parent().parent().parent().parent().find('h1').text(); // gets the specific month;
+		var content = $selection.text();
+		$modal.
+		if(info !== null){
+			$modal.find('p').text(info);			
+		}else{
+			$modal.find('p').text('');			
+		}		
+	}).find('#save').click(function(){
+		var content = $modal.find('p').text();
+		localStorage.setItem(id,content);
+	}).find('#close').click(function(){
+		$modal.find('p').text("") ;
+	});
+	
 	
 });
+function findCellParent(currentPos){
+	$currentPos = currentPos;
+	var $row = $currentPos.parent();
+	var len = $row.find('td').length;
+
+}
