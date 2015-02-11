@@ -117,7 +117,6 @@ $(document).ready(function(){
 	var curr =0;
 	var len = $('.mName').length;
 	$($('.mName')[curr]).css('display','block');
-	// $('#gl').find('button').removeAttr("disabled");
 	$('#gl').find('button').click(function() {
 		if(curr > 0){
 			$('#gl').find('button').removeAttr("disabled");
@@ -141,4 +140,18 @@ $(document).ready(function(){
 		}
 		$('#gl').find('button').removeAttr("disabled");
 	});
+
+	// blocks out the empty calendar dates	
+	$('td').each(function(){
+		if($(this).text() === ""){			
+			$(this).attr('disabled','true').css('cursor','no-drop');
+		}else{
+			$(this).css('cursor','pointer');
+		}
+	}).click(function(){
+		if(!($(this).text() === "")){			
+			$(this).attr('data-toggle','modal').attr('data-target','#myModal');
+		}	 	
+	});
+	
 });
