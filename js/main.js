@@ -8,7 +8,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="January"){
 				if(index >2){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -16,7 +16,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="March"){
 				if(index >5){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -24,7 +24,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="May"){
 				if(index >3){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -32,7 +32,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="July"){
 				if(index >1){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -40,7 +40,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="August"){
 				if(index >4){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -48,7 +48,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="October"){
 				if(index >2){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -56,7 +56,7 @@ $(months).find("h1").each(function(){
 			if(dmonth ==="December"){
 				if(index >0){
 					if(count < 32){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
@@ -70,21 +70,21 @@ $(months).find("h1").each(function(){
 		  	if(dmonth === "April"){
 		  		if(index >1){
 			  		if(count < 31){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 		  		}
 		  	}
 		  	if(dmonth === "June"){
 			  		if(count < 31){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 		  	}
 		  	if(dmonth === "September"){
 		  		if(index >0){
 			  		if(count < 31){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 		  		}
@@ -92,7 +92,7 @@ $(months).find("h1").each(function(){
 		  	if(dmonth === "November"){
 		  		if(index >5){
 			  		if(count < 31){
-						$(this).text(count);
+						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 		  		}
@@ -104,7 +104,7 @@ $(months).find("h1").each(function(){
 		$(this).parent().parent().find("td").each(function(index,element){
 		  	if(index>5){
 			  	if(count < 29){
-					$(this).text(count);
+					$(this).append("<h3></h3>").find("h3").text(count);
 				   	count++;
 				}		  	}
 
@@ -112,11 +112,7 @@ $(months).find("h1").each(function(){
 		count = 1;
 	}
 });
-$('td').each(function(){
-	if($(this).text() !== "" || $(this).text() !== null ){
-		$(this).append("<div></div>").find('div').css('width','100%').css('height','50%');
-	}
-});
+
 })();
 $(document).ready(function(){
 	var curr =0;
@@ -130,7 +126,11 @@ $(document).ready(function(){
 	// id creation 
 	var id ; // unique id for each table cell
 	
-
+	$col.each(function(){
+		if( !($(this).text() === "" || $(this).text() === null) ){
+			$(this).append("<div></div>");
+		}
+	});
 	$($monthN[curr]).css('display','block');
 	$glypL.find('button').click(function() {
 		if(curr > 0){
@@ -158,32 +158,35 @@ $(document).ready(function(){
 
 	// blocks out the empty calendar dates	
 	$col.each(function(){
+		// var left = $pos.left.toString().substring(0,7);
+		// var top = $pos.top.toString().substring(0,7);			
+		content = $(this).text(),
+		$pos = $(this).offset(), // gets the column position
+		/*
+			Gets the specific left and top position, grabs the first 7 indexes from each number 
+			and then adds them together to create the pos variable.
+		*/			
+		pos = parseFloat($pos.left.toString().substring(0,7)) + parseFloat($pos.top.toString().substring(0,7)),
+		parent = $(this).parent().parent().parent().parent().find('h1').text(), // gets the specific month
+		station = parent.substring(0,3).concat(content,"_",pos);
+		$(this).attr('key',station);
+		var id = localStorage.getItem($(this).attr('key'));
 		if($(this).text() === ""){			
 			$(this).attr('disabled','true').css('cursor','no-drop');
 		}else{
 			$(this).css('cursor','pointer');
+			if(id !== null){
+				$(this).find('div').append('<div></div>').find('div').addClass('circle');
+			}
 		}
 	}).click(function(){
 		if(!($(this).text() === "")){
-			// var left = $pos.left.toString().substring(0,7);
-			// var top = $pos.top.toString().substring(0,7);			
-			var content = $(this).text();
-			var $pos = $(this).offset(); // gets the column position
-			/*
-				Gets the specific left and top position, grabs the first 7 indexes from each number 
-				and then adds them together to create the pos variable.
-			*/			
-			var pos = parseFloat($pos.left.toString().substring(0,7)) + parseFloat($pos.top.toString().substring(0,7)); 
-			var parent = $(this).parent().parent().parent().parent().find('h1').text(); // gets the specific month 
-			id = parent.substring(0,3).concat(content,pos);
 			$selection = $(this);
 			$(this).attr('data-toggle','modal').attr('data-target','#myModal');
 		}	 	
 	});
-
-	$modal.find('p').text('EnterEv');
 	$modal.on('show.bs.modal', function(event){
-		var info = localStorage.getItem(id),
+		var info = localStorage.getItem($selection.attr('key')),
 		month = $selection.parent().parent().parent().parent().find('h1').text(), // gets the specific month;
 		day = $selection.text(),
 		pos = findCellParent(),
@@ -191,13 +194,18 @@ $(document).ready(function(){
 		title = month + " " + weekDay + " " + day;
 		$modal.find('h4').text(title);
 		if(info !== null){
-			$modal.find('p').text(info);			
+			$modal.find('p').text(info);					
 		}else{
 			$modal.find('p').text('');			
 		}		
 	}).find('#save').click(function(){
+		if($modal.find('p').text() !== ""){	
+			if($selection.find('div').find('div').hasClass('circle') !== true){
+				$selection.find('div').append('<div></div>').find('div').addClass('circle');
+			}				
+		}		
 		var content = $modal.find('p').text();
-		localStorage.setItem(id,content);
+		localStorage.setItem($selection.attr('key'),content);
 	}).find('#close').click(function(){
 		$modal.find('p').text("") ;
 	});
@@ -215,3 +223,8 @@ $(document).ready(function(){
 	}
 	
 });
+// localStorage.setItem('Jan17_1230.9189999999999', 'Intro To HTML, Location: PC 304 Time: 9:00am - 10am, Basic Description - Learn the basics of HTML');
+// localStorage.setItem('Jan18_1297.586', 'Intro to JQuery, Location: PC304 Time: 11:00am -12:pm, Description - Basic Jquery Syntax & loops');
+// localStorage.setItem('Jan2_963.1410000000001', 'something');
+// localStorage.setItem('Jan27_1096.4740000000002', 'something');
+// localStorage.setItem('Jan26_1028.6970000000001', 'something');
