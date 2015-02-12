@@ -1,5 +1,5 @@
 (function(){
-	var count =1;
+var count =1;
 var months = $('.mName');
 $(months).find("h1").each(function(){
    if(($(this).text() === "January") || ($(this).text() === "March") || ($(this).text() === "May") || ($(this).text() === "July") || ($(this).text() === "August") || ($(this).text() === "October") || ($(this).text() === "December")){
@@ -110,6 +110,11 @@ $(months).find("h1").each(function(){
 
 		});
 		count = 1;
+	}
+});
+$('td').each(function(){
+	if($(this).text() !== "" || $(this).text() !== null ){
+		$(this).append("<div></div>").find('div').css('width','100%').css('height','50%');
 	}
 });
 })();

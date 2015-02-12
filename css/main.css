@@ -5,6 +5,10 @@ body,html{
 #tble{
 	display: flex;
 	justify-content: center;
+	/*prevents the other table from being displayed*/
+	overflow-x:hidden;
+	padding-right: 15%;
+	padding-left: 11%;
 }
 #months{
 	/*works in chrome but needs to adjusted for firefox*/
@@ -14,7 +18,8 @@ body,html{
 	display: inline-box;
 }
 .mName{
-	margin-right: 5%;
+	/*prevents the other tables from being displayed*/
+	margin-right: 100%;
 	display: none;
 }
 #gl div,#gr div{
