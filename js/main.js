@@ -168,7 +168,7 @@ $(document).ready(function(){
 		*/			
 		pos = parseFloat($pos.left.toString().substring(0,7)) + parseFloat($pos.top.toString().substring(0,7)),
 		parent = $(this).parent().parent().parent().parent().find('h1').text(), // gets the specific month
-		station = parent.substring(0,3).concat(content,"_",pos);
+		station = parent.substring(0,3).concat("_",content); // ommiting the pos var just to simplify the calls
 		$(this).attr('key',station);
 		var id = localStorage.getItem($(this).attr('key'));
 		if($(this).text() === ""){			
@@ -192,9 +192,13 @@ $(document).ready(function(){
 		pos = findCellParent(),
 		weekDay = $($selection.parent().parent().parent().find('th')[pos]).text(),
 		title = month + " " + weekDay + " " + day;
+
 		$modal.find('h4').text(title);
 		if(info !== null){
-			$modal.find('p').text(info);					
+			var items = info.split(',');
+			var chk = positions(items);
+			var mess = createMessage(chk, items);
+			$modal.find('p').html(mess);				
 		}else{
 			$modal.find('p').text('');			
 		}		
@@ -221,10 +225,50 @@ $(document).ready(function(){
 		});
 		return pos;
 	}
-	
+	function positions(arr){
+		var positions = [];
+		for(var a = 0; a < arr.length; a++){
+			if(arr[a].search(";") !== -1){
+				positions.push(a);
+			}
+		}
+		return positions;
+	}
+	function sanitize(item){
+		var pos = item.search(";"),
+		sanitize;
+		if(pos !== -1){
+			sanitize = item.substring(0,pos);
+			return sanitize;
+		}else{
+			return item;
+		}
+	}
+	function createMessage(pos,items){
+		var message ;
+		for(var a = 0; a < pos.length; a++){
+			if(a === 0){
+				message = "<h4>" + items[0] +"</h4>" +  "<ul>" ;
+				for(var b = 1; b <= pos[a]; b++ ){
+					message+= "<li>" + sanitize(items[b]) + "</li>";
+				}
+			}else{
+				message+= "<h4>" +items[pos[a -1] + 1] +"</h4>" + "<ul>" ;
+				for(var b = pos[a-1] + 2 ; b <= pos[a]; b++ ){
+					message+= "<li>" + sanitize(items[b]) + "</li>";
+				}
+			}			
+			message+= "</ul>";
+		}
+		return message;
+	}	
 });
-// localStorage.setItem('Jan17_1230.9189999999999', 'Intro To HTML, Location: PC 304 Time: 9:00am - 10am, Basic Description - Learn the basics of HTML');
-// localStorage.setItem('Jan18_1297.586', 'Intro to JQuery, Location: PC304 Time: 11:00am -12:pm, Description - Basic Jquery Syntax & loops');
-// localStorage.setItem('Jan2_963.1410000000001', 'something');
-// localStorage.setItem('Jan27_1096.4740000000002', 'something');
-// localStorage.setItem('Jan26_1028.6970000000001', 'something');
+function setEvents(Date,Message){
+	localStorage.setItem(Date,Message);
+}
+
+setEvents("Jan_12", "OFFICE PARTY,Location: PC 305,TIme: 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department Celebrating the 21st aniverssary of the success of this department;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
+setEvents("Jan_14", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
+setEvents("Jan_9", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
+setEvents("Dec_12", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
+setEvents("Mar_12", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
