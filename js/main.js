@@ -125,13 +125,10 @@ $(document).ready(function(){
 	var $glypR = $('#gr'); // right glyp
 	var $modal = $('#myModal'); // modal
 	var $selection ; // current element selected by any action
-
-	// id creation 
-	var id ; // unique id for each table cell
 	
 	$col.each(function(){
 		if( !($(this).text() === "" || $(this).text() === null) ){
-			$(this).append("<div></div>");
+			$(this).append("<div class='circbox'></div>");
 		}
 	});
 	$($monthN[curr]).css('display','block');
@@ -160,16 +157,8 @@ $(document).ready(function(){
 	});
 
 	// blocks out the empty calendar dates	
-	$col.each(function(){
-		// var left = $pos.left.toString().substring(0,7);
-		// var top = $pos.top.toString().substring(0,7);			
-		content = $(this).text(),
-		$pos = $(this).offset(), // gets the column position
-		/*
-			Gets the specific left and top position, grabs the first 7 indexes from each number 
-			and then adds them together to create the pos variable.
-		*/			
-		pos = parseFloat($pos.left.toString().substring(0,7)) + parseFloat($pos.top.toString().substring(0,7)),
+	$col.each(function(){			
+		var content = $(this).text(),
 		parent = $(this).parent().parent().parent().parent().find('h1').text(), // gets the specific month
 		station = parent.substring(0,3).concat("_",content); // ommiting the pos var just to simplify the calls
 		$(this).attr('key',station);
@@ -178,12 +167,14 @@ $(document).ready(function(){
 			$(this).attr('disabled','true').css('cursor','no-drop');
 		}else{
 			$(this).css('cursor','pointer');
-			if(id !== null){
+			if(id !== null && id !== ""){
 				$(this).find('div').append('<div></div>').find('div').addClass('circle');
 			}
 		}
 	}).click(function(){
-		if(!($(this).text() === "")){
+		var chk =  localStorage.getItem($(this).attr('key'));
+		console.log(chk);
+		if(($(this).text() !== "") && (chk !== "" ) && (chk  !== null)){
 			$selection = $(this);
 			$(this).attr('data-toggle','modal').attr('data-target','#myModal');
 		}	 	
@@ -268,9 +259,3 @@ $(document).ready(function(){
 function setEvents(Date,Message){
 	localStorage.setItem(Date,Message);
 }
-
-setEvents("Jan_12", "OFFICE PARTY,Location: PC 305,TIme: 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department Celebrating the 21st aniverssary of the success of this department;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
-setEvents("Jan_14", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
-setEvents("Jan_9", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
-setEvents("Dec_12", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
-setEvents("Mar_12", "OFFICE PARTY, PC 305, 11:00am to 2:00pm, Celebrating the 21st aniverssary of the success of this department ;, Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this;,Test, PC 456, 2:00pm to 5:00pm , Just testing out how to do this ")
