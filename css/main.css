@@ -53,6 +53,12 @@ th,td{
 #content li{
 	list-style-type: none;
 }
+div h1{
+	float: left;
+}
+span h1{
+	float: right;
+}
 /*td:hover{
 	background-color: rgb(142, 167, 184);
 }*/

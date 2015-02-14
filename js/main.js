@@ -2,26 +2,10 @@
 var count =1;
 var months = $('.mName');
 $(months).find("h1").each(function(){
-   if(($(this).text() === "January") || ($(this).text() === "March") || ($(this).text() === "May") || ($(this).text() === "July") || ($(this).text() === "August") || ($(this).text() === "October") || ($(this).text() === "December")){
+   if(($(this).text() === "January ") || ($(this).text() === "March ") || ($(this).text() === "May ") || ($(this).text() === "July ") || ($(this).text() === "August ") || ($(this).text() === "October ") || ($(this).text() === "December ")){
 		var dmonth = $(this).text();
 		$(this).parent().parent().find("td").each(function(index,element){
-			if(dmonth ==="January"){
-				if(index >2){
-					if(count < 32){
-						$(this).append("<h3></h3>").find("h3").text(count);
-					   	count++;
-					}
-				}
-			}
-			if(dmonth ==="March"){
-				if(index >5){
-					if(count < 32){
-						$(this).append("<h3></h3>").find("h3").text(count);
-					   	count++;
-					}
-				}
-			}
-			if(dmonth ==="May"){
+			if(dmonth ==="January "){
 				if(index >3){
 					if(count < 32){
 						$(this).append("<h3></h3>").find("h3").text(count);
@@ -29,15 +13,15 @@ $(months).find("h1").each(function(){
 					}
 				}
 			}
-			if(dmonth ==="July"){
-				if(index >1){
+			if(dmonth ==="March "){
+				if(index >=0){
 					if(count < 32){
 						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
 					}
 				}
 			}
-			if(dmonth ==="August"){
+			if(dmonth ==="May "){
 				if(index >4){
 					if(count < 32){
 						$(this).append("<h3></h3>").find("h3").text(count);
@@ -45,7 +29,7 @@ $(months).find("h1").each(function(){
 					}
 				}
 			}
-			if(dmonth ==="October"){
+			if(dmonth ==="July "){
 				if(index >2){
 					if(count < 32){
 						$(this).append("<h3></h3>").find("h3").text(count);
@@ -53,8 +37,24 @@ $(months).find("h1").each(function(){
 					}
 				}
 			}
-			if(dmonth ==="December"){
-				if(index >0){
+			if(dmonth ==="August "){
+				if(index >5){
+					if(count < 32){
+						$(this).append("<h3></h3>").find("h3").text(count);
+					   	count++;
+					}
+				}
+			}
+			if(dmonth ==="October "){
+				if(index >3){
+					if(count < 32){
+						$(this).append("<h3></h3>").find("h3").text(count);
+					   	count++;
+					}
+				}
+			}
+			if(dmonth ==="December "){
+				if(index >1){
 					if(count < 32){
 						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
@@ -64,10 +64,27 @@ $(months).find("h1").each(function(){
 		});
 		count = 1;
 	}
-	if(($(this).text() === "April") || ($(this).text() === "June") || ($(this).text() === "September") || ($(this).text() === "November")){
+	if(($(this).text() === "April ") || ($(this).text() === "June ") || ($(this).text() === "September ") || ($(this).text() === "November ")){
 		var dmonth = $(this).text();
 		$(this).parent().parent().find("td").each(function(index,element){
-		  	if(dmonth === "April"){
+		  	if(dmonth === "April "){
+		  		if(index >2){
+			  		if(count < 31){
+						$(this).append("<h3></h3>").find("h3").text(count);
+					   	count++;
+					}
+		  		}
+		  	}
+		  	if(dmonth === "June "){
+		  		if(index > 0){
+		  			if(count < 31){
+						$(this).append("<h3></h3>").find("h3").text(count);
+					   	count++;
+					}
+		  		}
+			  		
+		  	}
+		  	if(dmonth === "September "){
 		  		if(index >1){
 			  		if(count < 31){
 						$(this).append("<h3></h3>").find("h3").text(count);
@@ -75,22 +92,8 @@ $(months).find("h1").each(function(){
 					}
 		  		}
 		  	}
-		  	if(dmonth === "June"){
-			  		if(count < 31){
-						$(this).append("<h3></h3>").find("h3").text(count);
-					   	count++;
-					}
-		  	}
-		  	if(dmonth === "September"){
-		  		if(index >0){
-			  		if(count < 31){
-						$(this).append("<h3></h3>").find("h3").text(count);
-					   	count++;
-					}
-		  		}
-		  	}
-		  	if(dmonth === "November"){
-		  		if(index >5){
+		  	if(dmonth === "November "){
+		  		if(index >=0){
 			  		if(count < 31){
 						$(this).append("<h3></h3>").find("h3").text(count);
 					   	count++;
@@ -100,9 +103,9 @@ $(months).find("h1").each(function(){
 		});
 		count = 1;
 	}
-	if(($(this).text() === "Feburary")){
+	if(($(this).text() === "Feburary ")){
 		$(this).parent().parent().find("td").each(function(index,element){
-		  	if(index>5){
+		  	if(index>=0){
 			  	if(count < 29){
 					$(this).append("<h3></h3>").find("h3").text(count);
 				   	count++;
@@ -192,7 +195,6 @@ $(document).ready(function(){
 		pos = findCellParent(),
 		weekDay = $($selection.parent().parent().parent().find('th')[pos]).text(),
 		title = month + " " + weekDay + " " + day;
-
 		$modal.find('h4').text(title);
 		if(info !== null){
 			var items = info.split(',');
