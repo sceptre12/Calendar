@@ -1,31 +1,31 @@
 body,html{
 	min-width: 100%;
 	height: 100%;
+	position: relative;
 }
 #Cal  #tble{
+	position: relative;
 	display: flex;
 	justify-content: center;
 	/*prevents the other table from being displayed*/
-	overflow:hidden;
-	padding-right: 15%;
-	padding-left: 11%;
+	overflow-x:hidden;
+	padding-right: 6%;
+	padding-left: 6%;
 }
+
 #Cal #months{
-	/*works in chrome but needs to adjusted for firefox*/
-	display: -webkit-inline-box;
-	display: -moz-inline-box;
-	display: -ms-inline-box;
-	display: inline-box;
+	/*works in chrome, firefox, IE*/
+	display: -webkit-inline-box !important; /*chrome*/
+	display: inline-flex; /*IE and Moz*/
+	padding-right: 15%;
+	padding-left: 15%;
 }
 #Cal .mName{
 	/*prevents the other tables from being displayed*/
 	margin-right: 100%;
 	display: none;
 }
-#Cal #gl div,#Cal #gr div{
-	width: 100%;
-	height: 100%;
-}
+
 #Cal #gr button{
 	float: left;
 }
@@ -35,19 +35,31 @@ body,html{
 #Cal td div{
 	width: 50px;
 	height: 20px;
-	background-color: grey;
+	background-color: #112d54;
 	margin-right: auto;
 	margin-left: auto;
+	border-radius: 10px;
 }
 #Cal div.circbox {
 	padding:5px;
+}
+#Cal #gl, #Cal #gr{
+	position: fixed;
+	bottom: 20%;
+}
+#gl{
+	left: 20%;
+}
+#gr{
+	right: 20%; 
 }
 #Cal .circle{
 	width: 10px;
     height: 10px;
     border:3px solid transparent;
     border-radius: 50%;
-    background-color: red;
+    background-color: #E7C124;
+
 }
 #Cal th, #Cal td{
 
@@ -57,10 +69,20 @@ body,html{
 	list-style-type: none;
 }
 #Cal div h1{
-	float: left;
+	/*float: left;*/
 }
 #Cal span h1{
-	float: right;
+	/*float: right;*/
+}
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+  #Cal #months{
+		/*adjustment for firefox*/
+		display: inline-flex;
+		padding-right: 15%;
+		padding-left: 15%;
+		overflow: hidden;
+	}
 }
 
 /* ==========================================================================

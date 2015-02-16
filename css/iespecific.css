@@ -1,0 +1,9 @@
+#Cal #months{
+	/*works in chrome but needs to adjusted for firefox*/
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	padding-right: 15%;
+	padding-left: 15%;
+	overflow: hidden;
+}
