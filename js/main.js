@@ -1,4 +1,33 @@
 (function(){
+	var amount = 12;
+	var $container = $('.mName');
+	
+	function loop(count){
+		var table = "<table class='table table-striped table-bordered'>";			
+			for(var a = 0; a < count ; a++){
+				if(a === 0){
+					table +="<thead><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr></thead><tbody>"
+				}else{
+					table +="<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
+				}
+			}
+			table += " </tbody></table>";
+			return table;	
+	}
+	$container.each(function(index,element){
+		if(index === 0 || index === 2 || index === 3 || index === 5 || index === 6 || index === 8 || index === 9 || index === 10 || index === 11){
+			var count = 6;
+			$($container[index]).append(loop(count));
+		}else if(index === 1){
+			var count = 5;
+			$($container[index]).append(loop(count));
+		}else {
+			count = 7;
+			$($container[index]).append(loop(count));
+		}
+	});	
+})();
+(function(){
 var count =1;
 var months = $('.mName');
 $(months).find("h1").each(function(){
@@ -173,7 +202,6 @@ $(document).ready(function(){
 		}
 	}).click(function(){
 		var chk =  localStorage.getItem($(this).attr('key'));
-		console.log(chk);
 		if(($(this).text() !== "") && (chk !== "" ) && (chk  !== null)){
 			$selection = $(this);
 			$(this).attr('data-toggle','modal').attr('data-target','#myModal');
@@ -195,17 +223,20 @@ $(document).ready(function(){
 		}else{
 			$modal.find('p').text('');			
 		}		
-	}).find('#save').click(function(){
-		if($modal.find('p').text() !== ""){	
-			if($selection.find('div').find('div').hasClass('circle') !== true){
-				$selection.find('div').append('<div></div>').find('div').addClass('circle');
-			}				
-		}		
-		var content = $modal.find('p').text();
-		localStorage.setItem($selection.attr('key'),content);
-	}).find('#close').click(function(){
-		$modal.find('p').text("") ;
-	});
+	})
+	// makes use of the save and close buttons
+
+	// .find('#save').click(function(){
+	// 	if($modal.find('p').text() !== ""){	
+	// 		if($selection.find('div').find('div').hasClass('circle') !== true){
+	// 			$selection.find('div').append('<div></div>').find('div').addClass('circle');
+	// 		}				
+	// 	}		
+	// 	var content = $modal.find('p').text();
+	// 	localStorage.setItem($selection.attr('key'),content);
+	// }).find('#close').click(function(){
+	// 	$modal.find('p').text("") ;
+	// });
 	function findCellParent(){
 		var count = 0,
 		pos = 0;

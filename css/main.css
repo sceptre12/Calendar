@@ -13,6 +13,7 @@ body,html{
 	padding-left: 6%;
 }
 
+
 #Cal #months{
 	/*works in chrome, firefox, IE*/
 	display: -webkit-inline-box !important; /*chrome*/
@@ -25,7 +26,9 @@ body,html{
 	margin-right: 100%;
 	display: none;
 }
-
+#Cal .mName div h1{
+	display: inline;
+}
 #Cal #gr button{
 	float: left;
 }
@@ -75,9 +78,10 @@ body,html{
 	/*float: right;*/
 }
 @-moz-document url-prefix() {
+  /* Firefox specifc */
   fieldset { display: table-cell; }
   #Cal #months{
-		/*adjustment for firefox*/
+		adjustment for firefox
 		display: inline-flex;
 		padding-right: 15%;
 		padding-left: 15%;
