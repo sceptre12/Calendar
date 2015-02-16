@@ -1,4 +1,4 @@
-
+localStorage.clear() // this allows the most recent updates to always show on the site.
 /*
 	This is the Js File where you can add items to the calendar.
 	All that is needed is for you to type out " setEvents("firstparam","secondparam") "
