@@ -198,7 +198,7 @@ $(document).ready(function(){
 	// blocks out the empty calendar dates	
 	$col.each(function(){			
 		var content = $(this).text(),
-		parent = $(this).parent().parent().parent().parent().find('h1').text(), // gets the specific month
+		parent = $(this).parent().parent().parent().parent().parent().find('h1').text(), // gets the specific month
 		station = parent.substring(0,3).concat("_",content); // ommiting the pos var just to simplify the calls
 		$(this).attr('key',station);
 		var id = localStorage.getItem($(this).attr('key'));
@@ -219,7 +219,7 @@ $(document).ready(function(){
 	});
 	$modal.on('show.bs.modal', function(event){
 		var info = localStorage.getItem($selection.attr('key')),
-		month = $selection.parent().parent().parent().parent().find('h1').text(), // gets the specific month;
+		month = $selection.parent().parent().parent().parent().parent().find('h1').text(), // gets the specific month;
 		day = $selection.text(),
 		pos = findCellParent(),
 		weekDay = $($selection.parent().parent().parent().find('th')[pos]).text(),
