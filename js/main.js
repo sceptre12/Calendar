@@ -3,7 +3,7 @@
 	var $container = $('.mName');
 	
 	function loop(count){
-		var table = "<table class='table table-striped table-bordered'>";			
+		var table = "<div class='table-responsive'><table class='table table-striped table-bordered'>";			
 			for(var a = 0; a < count ; a++){
 				if(a === 0){
 					table +="<thead><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr></thead><tbody>"
@@ -11,7 +11,7 @@
 					table +="<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 				}
 			}
-			table += " </tbody></table>";
+			table += " </tbody></table></div>";
 			return table;	
 	}
 	$container.each(function(index,element){
@@ -154,6 +154,7 @@ $(document).ready(function(){
 	var $glypR = $('#gr'); // right glyp
 	var $modal = $('#myModal'); // modal
 	var $selection ; // current element selected by any action
+	var delay  = 0; // prevents button spammers
 	
 	$col.each(function(){
 		if( !($(this).text() === "" || $(this).text() === null) ){
@@ -161,28 +162,37 @@ $(document).ready(function(){
 		}
 	});
 	$($monthN[curr]).css('display','block');
+
 	$glypL.find('button').click(function() {
-		if(curr > 0){
-			$(this).find('button').removeAttr("disabled");
-			$($monthN[curr]).fadeOut('fast').delay('500');
-			$($monthN[curr-1]).delay('500').fadeIn('slow');
-			curr--;
-		}
-		if(curr === 0){
-			$(this).attr('disabled','true');
-		}
-		$glypR.find('button').removeAttr("disabled");
+		setTimeout(function(){
+			if(curr > 0){
+				$(this).find('button').removeAttr("disabled");
+				$($monthN[curr]).fadeOut('fast').delay('500');
+				$($monthN[curr-1]).delay('500').fadeIn('slow');
+				curr--;
+			}
+			if(curr === 0){
+				$(this).attr('disabled','true');
+			}
+			$glypR.find('button').removeAttr("disabled");
+		},
+		delay)		
 	});
+
 	$glypR.find('button').click(function() {
-		if(curr < 11) {
-			$($monthN[curr]).fadeOut('fast').delay('500');
-			$($monthN[curr+1]).delay('500').fadeIn('slow');
-			curr++;
-		}
-		if(curr === 11){
-			$(this).attr('disabled','true');
-		}
-		$glypL.find('button').removeAttr("disabled");
+		setTimeout(function(){
+			if(curr < 11) {
+				$($monthN[curr]).fadeOut('fast').delay('500');
+				$($monthN[curr+1]).delay('500').fadeIn('slow');
+				curr++;
+			}
+			if(curr === 11){
+				$(this).attr('disabled','true');
+			}
+			$glypL.find('button').removeAttr("disabled");
+		},
+		delay)
+		
 	});
 
 	// blocks out the empty calendar dates	
