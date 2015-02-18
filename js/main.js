@@ -220,10 +220,11 @@ $(document).ready(function(){
 	$modal.on('show.bs.modal', function(event){
 		var info = localStorage.getItem($selection.attr('key')),
 		month = $selection.parent().parent().parent().parent().parent().find('h1').text(), // gets the specific month;
+		month = month.split(" "),
 		day = $selection.text(),
 		pos = findCellParent(),
 		weekDay = $($selection.parent().parent().parent().find('th')[pos]).text(),
-		title = month + " " + weekDay + " " + day;
+		title = weekDay + ", " + month[0] + " " + day  +", " + month[1] ;
 		$modal.find('h4').text(title);
 		if(info !== null){
 			var items = info.split(',');
