@@ -1,8 +1,8 @@
-body,html{
+/*body,html{
 	min-width: 100%;
 	height: 100%;
 	position: relative;
-}
+}*/
 #Cal  {
 	position: relative;
 	display: flex;
@@ -12,8 +12,8 @@ body,html{
 }
 #Cal #months{
 	/*works in chrome, firefox, IE*/
-	display: -webkit-inline-box !important; /*chrome*/
-	display: inline-flex; /*IE and Moz*/
+	display: -webkit-inline-box !important; chrome
+	display: inline-flex;
 	padding-right: 15%;
 	padding-left: 15%;
 }
@@ -65,7 +65,7 @@ body,html{
   /* Firefox specifc */
   fieldset { display: table-cell; }
   #Cal #months{
-		adjustment for firefox
+		/*adjustment for firefox*/
 		display: inline-flex;
 		padding-right: 15%;
 		padding-left: 15%;

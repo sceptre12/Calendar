@@ -155,6 +155,8 @@ $(document).ready(function(){
 	var $modal = $('#myModal'); // modal
 	var $selection ; // current element selected by any action
 	var delay  = 0; // prevents button spammers
+	var currDate = new Date(); // current date 
+	curr = currDate.getMonth();
 	
 	$col.each(function(){
 		if( !($(this).text() === "" || $(this).text() === null) ){
