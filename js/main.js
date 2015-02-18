@@ -209,9 +209,8 @@ $(document).ready(function(){
 		}else{
 			$(this).css('cursor','pointer');
 			if(id !== null && id !== ""){
-				$(this).css('background-color',"#f2c02b");
-			}
-			
+				$(this).css('background-color',"#f6d56f");
+			}			
 		}
 	}).click(function(){
 		var chk =  localStorage.getItem($(this).attr('key'));
