@@ -209,7 +209,7 @@ $(document).ready(function(){
 		}else{
 			$(this).css('cursor','pointer');
 			if(id !== null && id !== ""){
-				$(this).css('background-color',"rgba(231, 193, 36, 0.3)");
+				$(this).css('background-color',"#f2c02b");
 			}
 			
 		}
