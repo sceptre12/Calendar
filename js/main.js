@@ -209,8 +209,9 @@ $(document).ready(function(){
 		}else{
 			$(this).css('cursor','pointer');
 			if(id !== null && id !== ""){
-				$(this).find('div').append('<div></div>').find('div').addClass('circle');
+				$(this).css('background-color',"rgba(231, 193, 36, 0.3)");
 			}
+			
 		}
 	}).click(function(){
 		var chk =  localStorage.getItem($(this).attr('key'));
