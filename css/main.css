@@ -52,7 +52,7 @@ body,html{
 #btncont{
 	width: 100%;
 	position: absolute;
-	margin-left: 39%;
+	margin-left: 70%;
 	z-index: 999;
 }
 #gl{
@@ -70,13 +70,6 @@ body,html{
 		padding-right: 15%;
 		padding-left: 15%;
 		overflow: hidden;
-	}
-}
-
-@media screen and (max-width: 700px){
-	#btncont{		
-		padding-left: 5%;
-		padding-right: 5%;
 	}
 }
 
