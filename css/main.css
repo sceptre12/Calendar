@@ -12,7 +12,7 @@
 }
 #Cal #months{
 	/*works in chrome, firefox, IE*/
-	display: -webkit-inline-box !important; chrome
+	display: -webkit-inline-box !important; 
 	display: inline-flex;
 	padding-right: 15%;
 	padding-left: 15%;
