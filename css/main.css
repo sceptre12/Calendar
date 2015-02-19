@@ -14,8 +14,8 @@
 	/*works in chrome, firefox, IE*/
 	display: -webkit-inline-box !important; 
 	display: inline-flex;
-	padding-right: 15%;
-	padding-left: 15%;
+	padding-right: 17%;
+	padding-left: 16%;
 }
 #Cal .mName{
 	/*prevents the other tables from being displayed*/
@@ -67,8 +67,8 @@
   #Cal #months{
 		/*adjustment for firefox*/
 		display: inline-flex;
-		padding-right: 15%;
-		padding-left: 15%;
+		/*media queries will need to be applied*/
+		padding: 0 15%;
 		overflow: hidden;
 	}
 }
