@@ -12,14 +12,18 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/browserDetection.js"></script>
         <link rel="stylesheet" href="css/main.css">
-        <!--[if gte IE 6]>
-        <link rel="stylesheet" type="text/css" href="iespecific.css" />
-        <![endif]-->
+        <script>
+        BrowserDetect.init();
+        if(BrowserDetect.browser === "Explorer"){
+          document.write("<link rel='stylesheet' href='css/iespecific.css'>");
+        }   
+        </script>
         <style>
-          body{
-            padding-top: 100px;
-          }
+        body{
+          padding-top: 100px;
+        }
         </style>
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
@@ -54,7 +58,7 @@
     <div class="container">
       <div class="row">
         <div class="col-mid-8">
-            <div id="Cal">
+            <div  id="Cal">
               <div id="btncont">
                 <div id="gl">
                   <button class="btn btn-default">
