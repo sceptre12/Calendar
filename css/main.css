@@ -1,8 +1,3 @@
-/*body,html{
-	min-width: 100%;
-	height: 100%;
-	position: relative;
-}*/
 #Cal  {
 	position: relative;
 	display: flex;
@@ -58,10 +53,7 @@
 #gl{
 	float: left;
 }
-#gr{
-	/*float: right;*/
-}
-@-moz-document url-prefix() {
+-moz-document url-prefix() {
   /* Firefox specifc */
   fieldset { display: table-cell; }
   #Cal #months{
