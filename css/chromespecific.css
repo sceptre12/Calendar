@@ -1,0 +1,8 @@
+#Cal #months{
+	padding-right: 13%;
+	padding-left: 14%;
+}	
+#Cal .mName{
+	width: 100%;
+	overflow-x:hidden;
+}

@@ -4,9 +4,6 @@
 #Cal #months{
 	/*works in chrome but needs to adjusted for firefox*/
 	display: inline-flex !important;
-	padding-right: 1% !important;
-	padding-left: 5% !important;
-}
-#Cal .mName{
-	margin-right: 0;
+	padding-right: 13% !important;
+	padding-left: 14% !important;
 }

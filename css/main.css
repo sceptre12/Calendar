@@ -8,7 +8,7 @@
 #Cal #months{
 	/*works in chrome, firefox, IE*/
 	display: -webkit-inline-box !important; 
-	display: inline-flex;
+	display: inline-flex; 
 	padding-right: 17%;
 	padding-left: 16%;
 }
@@ -17,7 +17,6 @@
 	margin-right: 100%;
 	display: none;
 }
-
 #Cal .mName div h1{
 	display: inline;
 }
