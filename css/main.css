@@ -15,7 +15,7 @@
 #Cal .mName{
 	/*prevents the other tables from being displayed*/
 	margin-right: 100%;
-	display: none;
+	display: none; 
 }
 #Cal .mName div h1{
 	display: inline;
@@ -44,43 +44,11 @@
 	list-style-type: none;
 }
 #btncont{
-	width: 100%;
-	position: absolute;
+	/*width: 100%;
+	position: absolute;*/
 	margin-left: 70%;
 	z-index: 999;
 }
 #gl{
 	float: left;
 }
--moz-document url-prefix() {
-  /* Firefox specifc */
-  fieldset { display: table-cell; }
-  #Cal #months{
-		/*adjustment for firefox*/
-		display: inline-flex;
-		/*media queries will need to be applied*/
-		padding: 0 15%;
-		overflow: hidden;
-	}
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

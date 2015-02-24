@@ -156,21 +156,33 @@ $(document).ready(function(){
 	var $selection ; // current element selected by any action
 	var delay  = 0; // prevents button spammers
 	var currDate = new Date(); // current date 
-	curr = currDate.getMonth();
+	var curr = currDate.getMonth();
+	var browser = BrowserDetect.browser;
 	
 	$col.each(function(){
 		if( !($(this).text() === "" || $(this).text() === null) ){
 			$(this).append("<div class='circbox'></div>");
 		}
 	});
-	$($monthN[curr]).css('display','block');
+	
+	if(browser === "Explorer"){
+		$($monthN[curr]).css('display','inline-block');
+	}else{
+		$($monthN[curr]).css('display','block');
+	}
+	
 
 	$glypL.find('button').click(function() {
 		setTimeout(function(){
 			if(curr > 0){
 				$(this).find('button').removeAttr("disabled");
 				$($monthN[curr]).fadeOut('fast').delay('500');
-				$($monthN[curr-1]).delay('500').fadeIn('slow');
+				if(browser === "Explorer"){
+					$($monthN[curr-1]).delay('500').fadeIn('slow').css('display','inline-block');
+				}else{
+					$($monthN[curr-1]).delay('500').fadeIn('slow');
+				}
+				
 				curr--;
 			}
 			if(curr === 0){
@@ -185,7 +197,12 @@ $(document).ready(function(){
 		setTimeout(function(){
 			if(curr < 11) {
 				$($monthN[curr]).fadeOut('fast').delay('500');
-				$($monthN[curr+1]).delay('500').fadeIn('slow');
+				if(browser === "Explorer"){
+					$($monthN[curr+1]).delay('500').fadeIn('slow').css('display','inline-block');
+				}else{
+					$($monthN[curr+1]).delay('500').fadeIn('slow');
+				}
+				
 				curr++;
 			}
 			if(curr === 11){

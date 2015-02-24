@@ -1,0 +1,14 @@
+#Cal #months{
+		/*adjustment for firefox*/
+		display: inline-flex;
+		/*media queries will need to be applied*/
+		padding-left: 14%;
+		padding-right: 15%;
+		overflow-x: hidden;
+}
+@media only screen and (max-width: 950px){
+	#Cal .mName {
+		margin-right: 1%;
+		overflow-x:auto; 
+	}
+}

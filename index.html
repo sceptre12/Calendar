@@ -20,6 +20,10 @@
           document.write("<link rel='stylesheet' href='css/iespecific.css'>");
         }else if(BrowserDetect.browser === "Chrome"){
           document.write("<link rel='stylesheet' href='css/chromespecific.css'>");
+        }else if(BrowserDetect.browser === "Firefox"){
+          document.write("<link rel='stylesheet' href='css/mozspecific.css'>");
+        }else if(BrowserDetect.browser === "Safari"){
+          document.write("<link rel='stylesheet' href='css/safarispecific.css'>");
         }
         </script>
         <style>
@@ -58,10 +62,9 @@
       </div>
     </nav>
     <div class="container">
-      <div class="row">
+      <div class="row" style="overflow: none">
         <div class="col-mid-8">
-            <div  id="Cal">
-              <div id="btncont">
+        <div id="btncont">
                 <div id="gl">
                   <button class="btn btn-default">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -73,6 +76,7 @@
                   </button>
                 </div>
               </div> <!-- end of button container --> 
+            <div  id="Cal">              
           
               <div id="months">
                 <div class="mName">
@@ -167,6 +171,7 @@
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->          
           </div><!--  end of container -->
+
         </div> <!-- end of col -->
       </div> <!-- end of row -->
     </div><!--  end of container -->

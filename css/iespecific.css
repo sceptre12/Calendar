@@ -1,9 +1,18 @@
 #Cal {
-	padding: 5%;
+	padding: 5%;	
 }
 #Cal #months{
-	/*works in chrome but needs to adjusted for firefox*/
-	display: inline-flex !important;
+	white-space: nowrap;	
 	padding-right: 13% !important;
 	padding-left: 14% !important;
+}
+#Cal .mName{
+	/*prevents the other tables from being displayed*/
+	margin-right: 100%;
+	display: none;
+}
+@media only screen and (max-width: 1000px){
+	#Cal{
+		overflow-x: auto;
+	}
 }
