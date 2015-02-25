@@ -26,16 +26,11 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+#Cal td{
+	min-width:50%;
+}
 #Cal div.circbox {
 	padding:5px;
-}
-
-#Cal .circle{
-	width: 10px;
-    height: 10px;
-    border:3px solid transparent;
-    border-radius: 50%;
-    background-color: #E7C124;
 }
 #Cal th, #Cal td{
 	text-align: center;
