@@ -27,6 +27,8 @@
 		}
 	});	
 })();
+
+//populates the calendar.. Todo: is there a better way to implement this;
 (function(){
 var count =1;
 var months = $('.mName');
