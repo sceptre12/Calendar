@@ -6,7 +6,7 @@
 		var table = "<div class='table-responsive'><table class='table table-striped table-bordered'>";			
 			for(var a = 0; a < count ; a++){
 				if(a === 0){
-					table +="<thead><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr></thead><tbody>"
+					table +="<thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody>"
 				}else{
 					table +="<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 				}
