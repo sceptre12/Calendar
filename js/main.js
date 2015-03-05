@@ -148,6 +148,14 @@ $(months).find("h1").each(function(){
 });
 
 })();
+// Checks if the user is in private browsing mode in safari
+// local storage dosent work in that mode.
+try{
+	localStorage.setItem("tester", "works");
+	localStorage.removeItem("tester");
+}catch(e){
+	alert("This application will not display events in private browsing mode")
+}
 $(document).ready(function(){
 	var curr =0;
 	var $monthN = $('.mName'); // months table
